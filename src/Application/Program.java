@@ -1,20 +1,14 @@
 package Application;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import Entities.Product;
 
 public class Program {
-	// Mudando do método Comparable para o default method "sort" da
-	// Interface list "default void sort(Comparator<? super E> c)"
-	// pois no método "Comparable" nossa classe nao fica fechada para
-	// alteração e se o critério de comparação mudar, precisaremos alterar
-	// a classe Product e isso é indesejável.
-
-	// Criando uma classe "MyComparator" implementando uma interface
-	// "Comparator" e seu método "compare".
+	// Agora, ignorando a classe "MyComparator", e declararando um Comparator
+	// no programa principal utilizando uma classe "anônima".
 
 	public static void main(String[] args) {
 
@@ -25,7 +19,17 @@ public class Program {
 		list.add(new Product("Table", 450.0));
 		list.add(new Product("Notebook", 1200.0));
 
-		list.sort(new MyComparator());
+		//Criada uma variável "comp" objeto do tipo Comparator<Product> e criada
+		//uma classe anônima no programa principal.
+		
+		Comparator<Product> comp = new Comparator<Product>() {
+			@Override
+			public int compare(Product p1, Product p2) {
+				return p1.getName().toUpperCase().compareTo(p2.getName().toUpperCase());
+			}
+		};
+
+		list.sort(comp);
 
 		// Imprimindo os itens da lista list
 		for (Product p : list) {
