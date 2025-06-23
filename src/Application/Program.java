@@ -19,12 +19,9 @@ public class Program {
 		list.add(new Product("Table", 450.0));
 		list.add(new Product("Notebook", 1200.0));
 
-		//Excluido da expressão lambda comando "return" e as chaves, definindo o 
-		//comparator em uma única linha.
+		//Simplificando mais ainda a função anônima.
 		
-		Comparator<Product> comp = (p1,p2) -> p1.getName().toUpperCase().compareTo(p2.getName().toUpperCase());
-		
-		list.sort(comp);
+		list.sort((p1,p2) -> p1.getName().toUpperCase().compareTo(p2.getName().toUpperCase()));
 
 		// Imprimindo os itens da lista list
 		for (Product p : list) {
